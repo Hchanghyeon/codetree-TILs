@@ -24,7 +24,7 @@ public class Main {
         int resultNumber = 0;
 
         for(int i = 0; i < count; i++){
-            int sum = 0;
+            int sum = 1;
 
             for(int j = 0; j < count - 1; j++){
                 int current = map[i][j]; // 현재 값
@@ -42,7 +42,7 @@ public class Main {
         }
 
         for(int i = 0; i < count; i++){
-            int sum = 0;
+            int sum = 1;
 
             for(int j = 0; j < count - 1; j++){
                 int current = map[j][i]; // 현재 값
