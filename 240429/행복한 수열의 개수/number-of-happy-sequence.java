@@ -45,9 +45,9 @@ public class Main {
             int sum = 0;
 
             for(int j = 0; j < count - 1; j++){
-                int current = map[i][j]; // 현재 값
+                int current = map[j][i]; // 현재 값
 
-                if(current == map[i][j+1]){ // 이전 값과 현재 값이 동일할 때
+                if(current == map[j+1][i]){ // 이전 값과 현재 값이 동일할 때
                     sum++; // 값 올리기
                     continue;
                 } 
