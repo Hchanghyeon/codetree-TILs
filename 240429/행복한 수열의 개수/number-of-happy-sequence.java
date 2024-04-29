@@ -24,37 +24,41 @@ public class Main {
         int resultNumber = 0;
 
         for(int i = 0; i < count; i++){
-            int sum = 1;
+            int sum = 1, max = 1;
 
             for(int j = 0; j < count - 1; j++){
                 int current = map[i][j]; // 현재 값
 
                 if(current == map[i][j+1]){ // 이전 값과 현재 값이 동일할 때
                     sum++; // 값 올리기
-                    continue;
-                } 
-                sum = 1; // 값 초기화
+                } else {
+                    sum = 1; // 값 초기화        
+                }
+
+                max = Math.max(sum, max);
             }
 
-            if(sum >= result){
+            if(max >= result){
                 resultNumber++;
             }
         }
 
         for(int i = 0; i < count; i++){
-            int sum = 1;
+            int sum = 1, max = 1;
 
             for(int j = 0; j < count - 1; j++){
                 int current = map[j][i]; // 현재 값
 
                 if(current == map[j+1][i]){ // 이전 값과 현재 값이 동일할 때
                     sum++; // 값 올리기
-                    continue;
-                } 
-                sum = 1; // 값 초기화
+                } else {
+                    sum = 1; // 값 초기화        
+                }
+
+                max = Math.max(sum, max);
             }
 
-            if(sum >= result){
+            if(max >= result){
                 resultNumber++;
             }
         }
