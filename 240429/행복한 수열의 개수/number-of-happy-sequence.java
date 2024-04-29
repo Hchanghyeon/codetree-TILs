@@ -24,43 +24,37 @@ public class Main {
         int resultNumber = 0;
 
         for(int i = 0; i < count; i++){
-            int temp = 0;
             int sum = 0;
 
-            for(int j = 0; j < count; j++){
+            for(int j = 0; j < count - 1; j++){
                 int current = map[i][j]; // 현재 값
 
-                if(temp == current){ // 이전 값과 현재 값이 동일할 때
+                if(current == map[i][j+1]){ // 이전 값과 현재 값이 동일할 때
                     sum++; // 값 올리기
-                } else {
-                    sum = 0; // 값 초기화
-                }
-
-                temp = current;
+                    continue;
+                } 
+                sum = 1; // 값 초기화
             }
 
-            if(sum + 1 >= result){
+            if(sum >= result){
                 resultNumber++;
             }
         }
 
         for(int i = 0; i < count; i++){
-            int temp = 0;
             int sum = 0;
 
-            for(int j = 0; j < count; j++){
-                int current = map[j][i]; // 현재 값
+            for(int j = 0; j < count - 1; j++){
+                int current = map[i][j]; // 현재 값
 
-                if(temp == current){ // 이전 값과 현재 값이 동일할 때
+                if(current == map[i][j+1]){ // 이전 값과 현재 값이 동일할 때
                     sum++; // 값 올리기
-                } else {
-                    sum = 0; // 값 초기화
-                }
-
-                temp = current;
+                    continue;
+                } 
+                sum = 1; // 값 초기화
             }
 
-            if(sum + 1 >= result){
+            if(sum >= result){
                 resultNumber++;
             }
         }
