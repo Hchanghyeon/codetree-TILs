@@ -52,7 +52,7 @@ public class Main {
                 int nextX = blockX[i] + width;
 
                 if(!isBoundary(nextX, nextY)){
-                    return;
+                    continue;
                 }
 
                 sum += map[nextY][nextX];
