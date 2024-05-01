@@ -19,68 +19,70 @@ public class Main {
         m = Integer.parseInt(line[1]);
 
         map = new int[n][n];
+        visited = new boolean[n][n];
 
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             map[i] = Stream.of(bufferedReader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         }
 
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 mining(j, i);
+                for (boolean[] row : visited) {  // Reset visited after each mining operation
+                    Arrays.fill(row, false);
+                }
             }
         }
 
         System.out.println(max);
     }
 
-    private static void mining(int x, int y){
-        final Deque<Position> queue = new ArrayDeque<>();
-        visited = new boolean[n][n];
-        int currentK = 0;
+    private static void mining(int x, int y) {
+        // visited 초기화 이동
 
-        Position position = new Position(new int[]{x, y}, currentK);
-        queue.add(position);
-        int count = 0;
+        Deque<int[]> queue = new ArrayDeque<>();
+        int currentK = 1;
 
-        while(!queue.isEmpty()){
-            while(true){
-                Position curPosition = queue.poll();
+        queue.add(new int[]{x, y, currentK});
+        visited[y][x] = true;
 
-                if (currentK != curPosition.getK()) {
-                    queue.addFirst(curPosition);
-                    break;
+        int count = map[y][x] == 1 ? 1 : 0;
+
+        while (!queue.isEmpty()) {
+            int[] curPos = queue.pollFirst();
+            int curX = curPos[0];
+            int curY = curPos[1];
+            int k = curPos[2];
+
+            if (k > currentK) {
+                int cost = calculateCost(currentK, count);
+                if (cost >= 0) {
+                    max = Math.max(max, count);
                 }
-
-                int curX = curPosition.getCoordinate()[0];
-                int curY = curPosition.getCoordinate()[1];
-
-                for (int i = 0; i < 4; i++) {
-                    int nextX = dx[i] + curX;
-                    int nextY = dy[i] + curY;
-
-                    if (!isBoundary(nextX, nextY)) {
-                        return;
-                    }
-
-                    if (visited[nextY][nextX]) {
-                        continue;
-                    }
-
-                    if (map[nextY][nextX] == 1) {
-                        count++;
-                    }
-
-                    visited[nextY][nextX] = true;
-                    Position newPosition = new Position(new int[] {nextX, nextY}, currentK + 1);
-                    queue.add(newPosition);
-                }
+                currentK = k;
             }
 
-            currentK++;
-            int cost = calculateCost(currentK, count);
-            if(cost >= 0){
-                max = Math.max(max, count);
+            for (int i = 0; i < 4; i++) {
+                int nextX = dx[i] + curX;
+                int nextY = dy[i] + curY;
+
+                if (!isBoundary(nextX, nextY) || visited[nextY][nextX]) {
+                    continue;
+                }
+
+                visited[nextY][nextX] = true;
+                if (map[nextY][nextX] == 1) {
+                    count++;
+                }
+
+                queue.add(new int[]{nextX, nextY, k + 1});
             }
+        }
+
+        // 마지막 깊이에서도 비용 계산
+        int cost = calculateCost(currentK, count);
+        if (cost >= 0) {
+            max = Math.max(max, count);
         }
     }
 
@@ -90,23 +92,5 @@ public class Main {
 
     private static boolean isBoundary(int x, int y){
         return x >= 0 && x < n && y >= 0 && y < n;
-    }
-
-    static class Position {
-        int[] coordinate;
-        int k;
-
-        Position(int[] coordinate, int k){
-            this.coordinate = coordinate;
-            this.k = k;
-        }
-
-        public int[] getCoordinate(){
-            return coordinate;
-        }
-
-        public int getK(){
-            return k;
-        }
     }
 }
