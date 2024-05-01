@@ -83,7 +83,7 @@ public class Main {
 
         currentK++;
         int cost = calculateCost(currentK, count);
-        if(cost >= 0){
+        if(cost > 0){
             max = Math.max(max, count);
         }
     }
