@@ -51,7 +51,7 @@ public class Main {
     }
 
     while(!queue.isEmpty()){
-        while(!queue.isEmpty()){
+        while(true){
             Position curPosition = queue.poll();
             if(curPosition == null) break; // null 체크
 
