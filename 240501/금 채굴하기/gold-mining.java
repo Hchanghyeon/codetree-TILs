@@ -3,8 +3,6 @@ import java.io.InputStreamReader;
 import java.util.stream.Stream;
 import java.util.*;
 
-import javax.swing.text.Position;
-
 public class Main {
 
     private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -36,58 +34,55 @@ public class Main {
     }
 
     private static void mining(int x, int y){
-    visited = new boolean[n][n]; // 매 mining 호출 시마다 visited 배열 초기화
+        final Deque<Position> queue = new ArrayDeque<>();
+        visited = new boolean[n][n];
+        int currentK = 0;
 
-    final Deque<Position> queue = new ArrayDeque<>();
-    int currentK = 0;
+        Position position = new Position(new int[]{x, y}, currentK);
+        queue.add(position);
+        int count = 0;
 
-    Position position = new Position(new int[]{x, y}, currentK);
-    queue.add(position);
-    int count = 0;
-    visited[y][x] = true; // 초기 위치 방문 처리
+        while(!queue.isEmpty()){
+            while(true){
+                Position curPosition = queue.poll();
 
-    if(map[y][x] == 1){
-        count++;
-    }
-
-    while(!queue.isEmpty()){
-        while(true){
-            Position curPosition = queue.poll();
-            if(curPosition == null) break; // null 체크
-
-            if (currentK != curPosition.getK()) {
-                queue.addFirst(curPosition);
-                break;
-            }
-
-            int curX = curPosition.getCoordinate()[0];
-            int curY = curPosition.getCoordinate()[1];
-
-            for (int i = 0; i < 4; i++) {
-                int nextX = dx[i] + curX;
-                int nextY = dy[i] + curY;
-
-                if (!isBoundary(nextX, nextY) || visited[nextY][nextX]) {
-                    continue;
+                if (currentK != curPosition.getK()) {
+                    queue.addFirst(curPosition);
+                    break;
                 }
 
-                visited[nextY][nextX] = true; // 방문 처리
-                if (map[nextY][nextX] == 1) {
-                    count++;
-                }
+                int curX = curPosition.getCoordinate()[0];
+                int curY = curPosition.getCoordinate()[1];
 
-                Position newPosition = new Position(new int[] {nextX, nextY}, currentK + 1);
-                queue.add(newPosition);
+                for (int i = 0; i < 4; i++) {
+                    int nextX = dx[i] + curX;
+                    int nextY = dy[i] + curY;
+
+                    if (!isBoundary(nextX, nextY)) {
+                        return;
+                    }
+
+                    if (visited[nextY][nextX]) {
+                        continue;
+                    }
+
+                    if (map[nextY][nextX] == 1) {
+                        count++;
+                    }
+
+                    visited[nextY][nextX] = true;
+                    Position newPosition = new Position(new int[] {nextX, nextY}, currentK + 1);
+                    queue.add(newPosition);
+                }
+            }
+
+            currentK++;
+            int cost = calculateCost(currentK, count);
+            if(cost >= 0){
+                max = Math.max(max, count);
             }
         }
-
-        currentK++;
-        int cost = calculateCost(currentK, count);
-        if(cost >= 0){
-            max = Math.max(max, count);
-        }
     }
-}
 
     private static int calculateCost(int k, int count){
         return (count * m) - (k * k + (k + 1) * (k + 1));
