@@ -14,8 +14,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         String[] inputLine = bufferedReader.readLine().split(" ");
-        N = Integer.parseInt(inputLine[0]);
-        M = Integer.parseInt(inputLine[1]);
+        M = Integer.parseInt(inputLine[0]);
+        N = Integer.parseInt(inputLine[1]);
 
         map = new int[M][N];
 
