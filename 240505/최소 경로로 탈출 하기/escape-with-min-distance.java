@@ -62,6 +62,6 @@ public class Main {
     }
 
     private static boolean isBoundary(int x, int y){
-        return x >= 0 && x < M && y >= 0 && y < N && !visited[y][x] && map[y][x] == 1;
+        return (x >= 0 && x < M && y >= 0 && y < N) && !visited[y][x] && map[y][x] == 1;
     }
 }
