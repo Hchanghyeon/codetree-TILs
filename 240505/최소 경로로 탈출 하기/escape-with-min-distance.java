@@ -56,7 +56,7 @@ public class Main {
                 
                 visited[nextY][nextX] = true;
                 map[nextY][nextX] = map[currentPoint[1]][currentPoint[0]] + 1;
-                deque.add(new int[]{nextX, nextY});
+                deque.addLast(new int[]{nextX, nextY});
             }
         }
     }
