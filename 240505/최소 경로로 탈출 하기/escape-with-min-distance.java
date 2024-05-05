@@ -40,23 +40,21 @@ public class Main {
     private static void search(int x, int y){
         final Deque<int[]> deque = new ArrayDeque<>();
         int[] point = new int[]{x, y};
-        deque.add(point);
+        deque.addLast(point);
         visited[y][x] = true;
 
         while(!deque.isEmpty()){
-            int[] currentPoint = deque.pollLast();
+            int[] currentPoint = deque.poll();
             
             for(int i = 0; i < 4; i++){
                 int nextX = dx[i] + currentPoint[0];
                 int nextY = dy[i] + currentPoint[1];
 
-                if(!isBoundary(nextX, nextY)){
-                    continue;
+                if(isBoundary(nextX, nextY)){
+                    deque.addLast(new int[]{nextX, nextY});
+                    visited[nextY][nextX] = true;
+                    map[nextY][nextX] = map[currentPoint[1]][currentPoint[0]] + 1;
                 }
-                
-                visited[nextY][nextX] = true;
-                map[nextY][nextX] = map[currentPoint[1]][currentPoint[0]] + 1;
-                deque.addLast(new int[]{nextX, nextY});
             }
         }
     }
