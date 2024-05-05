@@ -10,6 +10,7 @@ public class Main {
     private static final int[] dy = {-1, 1, 0, 0};
     
     private static int[][] map;
+    private static boolean[][] visited;
     private static int N, M;
 
     public static void main(String[] args) throws Exception{
@@ -18,6 +19,7 @@ public class Main {
         M = Integer.parseInt(line[1]);
 
         map = new int[N][M];
+        visited = new boolean[N][M];
 
         for(int i = 0; i < N; i++){
             map[i] = Arrays.stream(bufferedReader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
@@ -39,6 +41,7 @@ public class Main {
         final Deque<int[]> deque = new ArrayDeque<>();
         int[] point = new int[]{x, y};
         deque.add(point);
+        visited[y][x] = true;
 
         while(!deque.isEmpty()){
             int[] currentPoint = deque.pollLast();
@@ -51,6 +54,7 @@ public class Main {
                     continue;
                 }
                 
+                visited[nextY][nextX] = true;
                 map[nextY][nextX] = map[currentPoint[1]][currentPoint[0]] + 1;
                 deque.add(new int[]{nextX, nextY});
             }
@@ -59,6 +63,6 @@ public class Main {
     }
 
     private static boolean isBoundary(int x, int y){
-        return x >= 0 && x < M && y >= 0 && y < N && map[y][x] == 1;
+        return x >= 0 && x < M && y >= 0 && y < N && !visited[y][x] && map[y][x] != 0;
     }
 }
