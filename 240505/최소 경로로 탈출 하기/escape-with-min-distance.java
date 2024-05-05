@@ -59,10 +59,9 @@ public class Main {
                 deque.add(new int[]{nextX, nextY});
             }
         }
-
     }
 
     private static boolean isBoundary(int x, int y){
-        return x >= 0 && x < M && y >= 0 && y < N && !visited[y][x] && map[y][x] != 0;
+        return x >= 0 && x < M && y >= 0 && y < N && !visited[y][x] && map[y][x] == 1;
     }
 }
