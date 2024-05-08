@@ -28,7 +28,7 @@ public class Main {
     }
 
     private static void bfs(int x, int y){
-        if(x == 0 && y == 0){
+        if(x == 0 && y == 0 && destinationX == 0 && destinationY == 0){
             result = 0;
             return;
         }
