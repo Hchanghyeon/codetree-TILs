@@ -24,7 +24,7 @@ public class Main {
 
         bfs(line[1] - 1, line[0] - 1);
 
-        System.out.println(result);
+        System.out.println(result + 1);
     }
 
     private static void bfs(int x, int y){
