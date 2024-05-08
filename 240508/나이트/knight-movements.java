@@ -19,10 +19,10 @@ public class Main {
         visited = new boolean[N][N];
             
         final int[] line = Arrays.stream(bufferedReader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        destinationX = line[2] - 1;
-        destinationY = line[3] - 1;
+        destinationY = line[2] - 1;
+        destinationX = line[3] - 1;
 
-        bfs(line[0] - 1, line[1] - 1);
+        bfs(line[1] - 1, line[0] - 1);
 
         System.out.println(result);
     }
