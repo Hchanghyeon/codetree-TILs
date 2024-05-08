@@ -33,7 +33,6 @@ public class Main {
             return;
         }
 
-
         final Deque<int[]> deque = new ArrayDeque<>();
         deque.addLast(new int[]{x, y});
         visited[y][x] = true;
@@ -52,8 +51,7 @@ public class Main {
 
                     if(nx == destinationX && ny == destinationY){
                         result = map[ny][nx];
-                        deque.clear();
-                        break;
+                        return;
                     }
                 }
             }
