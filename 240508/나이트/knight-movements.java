@@ -22,7 +22,7 @@ public class Main {
         destinationX = line[2] - 1;
         destinationY = line[3] - 1;
 
-        bfs(line[1] - 1, line[0] - 1);
+        bfs(line[0] - 1, line[1] - 1);
 
         System.out.println(result);
     }
