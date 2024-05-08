@@ -28,6 +28,12 @@ public class Main {
     }
 
     private static void bfs(int x, int y){
+        if(x == 0 && y == 0){
+            result = 0;
+            return;
+        }
+
+
         final Deque<int[]> deque = new ArrayDeque<>();
         deque.addLast(new int[]{x, y});
         visited[y][x] = true;
