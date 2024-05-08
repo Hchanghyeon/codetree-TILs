@@ -5,8 +5,8 @@ import java.util.*;
 
 public class Main {
 
-    private static final int[] dx = {-1, -2, 1, 2, 2, 1, -1, -2};
-    private static final int[] dy = {-2, -1, -2, -1, 1, 2, 2, 2};
+    private static final int[] dx = {-1, -2, -2, -1, 1, 2, 2, 1};
+    private static final int[] dy = {-2, -1, 1, 2, 2, 1, -1, -2};
     private static int N, destinationX, destinationY, result = -1;
     private static int[][] map;
     private static boolean[][] visited;
