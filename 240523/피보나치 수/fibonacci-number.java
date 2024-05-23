@@ -13,7 +13,7 @@ public class Main {
         dp[2] = 1;
 
         for(int i = 3; i < 45; i++){
-            dp[i] = dp[i - 1] + dp[i + 1];
+            dp[i] = dp[i - 1] + dp[i - 2];
         }
 
         System.out.println(dp[number]);
