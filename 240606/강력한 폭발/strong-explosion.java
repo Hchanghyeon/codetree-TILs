@@ -44,7 +44,7 @@ public class Main {
 
         recursive(0);
 
-        System.out.println(max - 1);
+        System.out.println(max);
     }
 
     private static void recursive(int depth){
