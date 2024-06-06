@@ -51,6 +51,6 @@ public class Main {
             prev = numbers.get(i);
         }
      
-        return count == numbers.get(numbers.size() - 1) || count % numbers.get(numbers.size() - 1) == 0;
+        return count == numbers.get(numbers.size() - 1);
     }
 }
