@@ -51,6 +51,10 @@ public class Main {
             prev = numbers.get(i);
         }
 
+        if(count == numbers.size() && count % prev == 0){
+             return true;
+        }
+     
         return count == prev;
     }
 }
