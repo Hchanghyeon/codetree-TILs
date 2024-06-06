@@ -41,17 +41,18 @@ public class Main {
             if(prev == numbers.get(i)){
                 count++;
             } else {
-                if(count != prev){
+                if(count % prev != 0){
+                    if(count != prev){
                     return false;
                 }
-
+                }
                 count = 1;
             }
 
             prev = numbers.get(i);
         }
 
-        if(count == numbers.size() && count % prev == 0){
+        if(count % prev == 0){
              return true;
         }
      
