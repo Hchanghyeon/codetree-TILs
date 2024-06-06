@@ -53,7 +53,15 @@ public class Main {
             int count = 0;
 
             for(int i = 0; i < positions.size(); i++){
-                count += processBomb(positions.get(i), numbers.get(i));
+                processBomb(positions.get(i), numbers.get(i));
+            }
+
+            for(int k = 0; k < N; k++){
+                for(int j = 0; j < N; j++){
+                    if(visited[k][j]) {
+                        count++;
+                    }
+                }
             }
 
             max = Math.max(count, max);
@@ -68,26 +76,19 @@ public class Main {
         }
     }
 
-    private static int processBomb(int[] position, int number){
-        int count = 0;
+    private static void processBomb(int[] position, int number){
         int[] mx = dx[number];
         int[] my = dy[number];
 
-        if(!visited[position[1]][position[0]]){
-            visited[position[1]][position[1]] = true;
-            count++;
-        }
-
+        visited[position[1]][position[0]] = true;
+      
         for(int i = 0; i < 4; i++){
             int nextX = mx[i] + position[0];
             int nextY = my[i] + position[1];
 
             if(nextX < N && nextY < N && nextX >= 0 && nextY >= 0 && !visited[nextY][nextX]){
                 visited[nextY][nextX] = true;
-                count++;
             }
         }
-
-        return count;
     }
 }
