@@ -48,7 +48,7 @@ public class Main {
         int count = 0;
 
         for(Position position : workPositions){
-            for(int i = position.getX1() - 1; i < position.getX2() - 1; i++){
+            for(int i = position.getX1() - 1; i <= position.getX2() - 1; i++){
                 if(checked[i]){
                     return 0;
                 }
