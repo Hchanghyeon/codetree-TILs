@@ -7,9 +7,6 @@ public class Main {
     private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     private static final List<Position> positions = new ArrayList<>();
     
-    private static int max = 0;
-    private static boolean[] visited;
-    private static boolean[] checked;
     private static int N = 0;
 
     public static void main(String[] args) throws Exception {
@@ -23,43 +20,21 @@ public class Main {
             positions.add(new Position(x1, x2));
         }
 
-        visited = new boolean[N];
-        checked = new boolean[1000];
-        recursive(0);
-        System.out.println(max);
-    }
+        // 선분을 끝점(x2) 기준으로 정렬
+        Collections.sort(positions, (p1, p2) -> p1.getX2() - p2.getX2());
 
-    private static void recursive(int depth){
-       int value = checkRanged();
-       max = Math.max(value, max);
-
-       for(int i = depth; i < N; i++){
-            if(!visited[i]){
-                visited[i] = true;
-                recursive(depth + 1);
-                visited[i] = false;
-            }
-        }
-    }
-
-    private static int checkRanged(){
-        Arrays.fill(checked, false);
         int count = 0;
+        int lastEnd = -1; // 마지막으로 선택된 선분의 끝점
 
-        for(int j = 0; j < positions.size(); j++){
-            if(visited[j]){
-                for(int i = positions.get(j).getX1() - 1; i <= positions.get(j).getX2() - 1; i++){
-                    if(checked[i]){
-                        return 0;
-                    }
-
-                    checked[i] = true;
-                }
+        for(Position position : positions) {
+            // 현재 선분의 시작점이 이전에 선택된 선분의 끝점보다 크거나 같다면 선택
+            if(position.getX1() > lastEnd) {
+                lastEnd = position.getX2(); // 선택된 선분의 끝점 갱신
                 count++;
             }
         }
 
-        return count;
+        System.out.println(count);
     }
 
     public static class Position {
