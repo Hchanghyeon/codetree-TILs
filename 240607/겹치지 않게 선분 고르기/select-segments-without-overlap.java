@@ -6,7 +6,6 @@ public class Main {
 
     private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     private static final List<Position> positions = new ArrayList<>();
-    private static final List<Position> workPositions = new ArrayList<>();
     
     private static int max = 0;
     private static boolean[] visited;
@@ -25,20 +24,18 @@ public class Main {
         }
 
         visited = new boolean[N];
-        recursive();
+        recursive(0);
         System.out.println(max);
     }
 
-    private static void recursive(){
+    private static void recursive(int depth){
        int value = checkRanged();
        max = Math.max(value, max);
 
-       for(int i = 0; i < N; i++){
+       for(int i = depth; i < N; i++){
             if(!visited[i]){
                 visited[i] = true;
-                workPositions.add(positions.get(i));
-                recursive();
-                workPositions.remove(workPositions.size() - 1);
+                recursive(depth + 1);
                 visited[i] = false;
             }
         }
@@ -48,15 +45,17 @@ public class Main {
         checked = new boolean[1000];
         int count = 0;
 
-        for(Position position : workPositions){
-            for(int i = position.getX1() - 1; i <= position.getX2() - 1; i++){
-                if(checked[i]){
-                    return 0;
-                }
+        for(int j = 0; j < positions.size(); j++){
+            if(visited[j]){
+                for(int i = positions.get(j).getX1() - 1; i <= positions.get(j).getX2() - 1; i++){
+                    if(checked[i]){
+                        return 0;
+                    }
 
-                checked[i] = true;
+                    checked[i] = true;
+                }
+                count++;
             }
-            count++;
         }
 
         return count;
