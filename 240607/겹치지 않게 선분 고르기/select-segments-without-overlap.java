@@ -10,6 +10,7 @@ public class Main {
     
     private static int max = 0;
     private static boolean[] visited;
+    private static boolean[] checked;
     private static int N = 0;
 
     public static void main(String[] args) throws Exception {
@@ -44,7 +45,7 @@ public class Main {
     }
 
     private static int checkRanged(){
-        boolean[] checked = new boolean[1000];
+        checked = new boolean[1000];
         int count = 0;
 
         for(Position position : workPositions){
