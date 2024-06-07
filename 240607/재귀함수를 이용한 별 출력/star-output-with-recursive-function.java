@@ -14,7 +14,7 @@ public class Main {
     }
 
     private static void recursive(int number){
-        if(count == number + 1){
+        if(count + 1 == number){
             return;
         }
 
