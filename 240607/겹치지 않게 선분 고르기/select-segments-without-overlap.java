@@ -24,6 +24,7 @@ public class Main {
         }
 
         visited = new boolean[N];
+        checked = new boolean[1000];
         recursive(0);
         System.out.println(max);
     }
@@ -42,7 +43,7 @@ public class Main {
     }
 
     private static int checkRanged(){
-        checked = new boolean[1000];
+        Arrays.fill(checked, false);
         int count = 0;
 
         for(int j = 0; j < positions.size(); j++){
