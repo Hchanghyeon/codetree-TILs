@@ -9,20 +9,15 @@ public class Main {
     public static void main(String[] args) throws Exception {
         
         N = Integer.parseInt(bufferedReader.readLine());
-        if(N == 1 || N == 2){
-            System.out.println(1);
-            return;
-        }
 
-        int result = recursive(1, 1, 2);
-        System.out.println(result);
+        System.out.println(recursive(N));
     }
 
-    private static int recursive(int num1, int num2, int count){
-        if(N == count){
-            return num2;
+    private static int recursive(int number){
+        if(number <= 2){
+            return 1;
         }
 
-        return recursive(num2, num1 + num2, count + 1);
+        return recursive(number - 1) + recursive(number - 2);
     }
 }
