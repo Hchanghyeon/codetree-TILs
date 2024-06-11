@@ -9,6 +9,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
         
         N = Integer.parseInt(bufferedReader.readLine());
+        if(N == 1 || N == 2){
+            System.out.println(1);
+            return;
+        }
+
         int result = recursive(1, 1, 2);
         System.out.println(result);
     }
