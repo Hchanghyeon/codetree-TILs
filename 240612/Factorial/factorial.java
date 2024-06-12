@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         
-        N = Integer.pasreInt(bufferedReader.readLine());
+        N = Integer.parseInt(bufferedReader.readLine());
 
         System.out.println(recursive(N));
     }
