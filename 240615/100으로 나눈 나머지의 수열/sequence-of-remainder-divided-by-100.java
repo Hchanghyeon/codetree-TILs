@@ -10,15 +10,19 @@ public class Main {
         
         N = Integer.parseInt(bufferedReader.readLine());
         
-        int result = recursive(2, 4, 2);
+        int result = recursive(N);
         System.out.println(result);
     }
 
-    private static int recursive(int prev, int next, int count){
-        if(count == N + 1){
-            return prev;
+    private static int recursive(int number){
+        if(number == 1){
+            return 2;
         }
 
-        return recursive(next, (prev * next) % 100, count + 1);
+        if(number == 2){
+            return 4;
+        }
+
+        return recursive(number - 1) * recursive(number - 2) % 100;
     }
 }
