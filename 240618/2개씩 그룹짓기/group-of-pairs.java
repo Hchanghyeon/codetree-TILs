@@ -19,7 +19,7 @@ public class Main {
         sum += prev;
 
         for(int i = numbers.length - 2; i >= 0; i--){
-            if(count == N){
+            if(count == 2){
                 break;
             }
 
