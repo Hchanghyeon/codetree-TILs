@@ -20,7 +20,7 @@ public class Main {
         for(int i = 0; i < N; i++){
             if(A[i] != B[i]){
                 System.out.println("No");
-                break;
+                return;
             }
         }
 
