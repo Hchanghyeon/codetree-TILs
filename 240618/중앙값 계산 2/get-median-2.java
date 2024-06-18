@@ -18,7 +18,7 @@ public class Main {
             result[i] = numbers[i];
 
             if((i + 1) % 2 != 0){
-                Arrays.sort(result, 0, i);
+                Arrays.sort(result, 0, i + 1);
                 System.out.print(result[i / 2] + " ");
             }
         }
