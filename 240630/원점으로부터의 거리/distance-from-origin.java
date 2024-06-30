@@ -17,7 +17,7 @@ public class Main {
             int x = Integer.parseInt(line[0]);
             int y = Integer.parseInt(line[1]);
 
-            positions[i] = new Position(i + 1, x, y, x - 0 + y - 0);
+            positions[i] = new Position(i + 1, x, y, Math.abs(x - 0) + Math.abs(y - 0));
         }
 
         Arrays.sort(positions);
