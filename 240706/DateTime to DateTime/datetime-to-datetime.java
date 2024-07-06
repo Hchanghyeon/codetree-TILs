@@ -12,10 +12,10 @@ public class Main {
         int hour = Integer.parseInt(inputLine[1]);
         int minute = Integer.parseInt(inputLine[2]);
 
-        int referenceInSeconds = 11 * 24 * 3600 + 11 * 3600 + 11 * 60 + 11;
-        int givenTimeInSeconds = day * 24 * 3600 + hour * 3600 + minute * 60;
+        int referenceInSeconds = 11 * 24 * 60 + 11 * 60 + 11;
+        int givenTimeInSeconds = day * 24 * 60 + hour * 60 + minute;
 
-        int difference = (givenTimeInSeconds - referenceInSeconds) / 60 + 1;
+        int difference = (givenTimeInSeconds - referenceInSeconds);
 
         if (difference < 0) {
             System.out.println(-1);
