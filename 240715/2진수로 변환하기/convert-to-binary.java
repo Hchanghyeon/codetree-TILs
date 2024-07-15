@@ -10,6 +10,11 @@ public class Main {
         int number = Integer.parseInt(bufferedReader.readLine());
         StringBuilder stringBuilder = new StringBuilder();
 
+        if(number == 0){
+            System.out.println(0);
+            return;            
+        }
+
         while(number > 0){
             int temp = number % 2;
             number = number / 2;
